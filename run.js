@@ -1,0 +1,1 @@
+var config = {'visitor records':{db:'http://localhost:5984/visitors'}}
