@@ -14,8 +14,9 @@ var csvheader = 'NAMELAST,NAMEFIRST,NAMEMID,UIN,BDGNBR,ACCESS_TYPE,TOA,POA,TOD,P
 var names = csvheader.split(',')
 
 function coherse (val) {
+  val = val.replace(/^\s+|\s+$/g, '');
   var x = parseInt(val);
-  if (!isNaN(x)) {
+  if (!isNaN(x) && x.toString == val) {
     return x;
   } else {
     return val;
@@ -45,6 +46,8 @@ csv.each(path.join(__dirname, 'data', 'WhiteHouse-WAVES-Released-0310.csv'), {se
     } else {
       obj._id = obj.UIN;
     } 
+    // sys.puts(data)
+    // sys.puts(JSON.stringify(obj))
     docbuffer.push(obj);
     if (docbuffer.length > 5000) {
       sys.puts("POST to "+url)
